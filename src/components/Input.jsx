@@ -1,15 +1,9 @@
-export default function Input({label, type, value, placeholder, onChange, name}) {
-  return (
-    <section>
-      <label className="block mt-8 mb-1 text-sm font-semibold">{label}</label>
-      <input
-        value={value}
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        className="flex w-full gap-5 px-4 py-2 my-4 border rounded-md w-25 lh-screen border-stone-300 focus:outline-none focus:ring-2 focus:ring-s"
-        name={name}
-        />
-    </section>
-  );
+export default function Input( { label, textarea, ...props } ) {
+
+const  classes = "w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600";
+
+  return <p className="flex flex-col gap-1 my-4 ">
+    <label className="text-sm font-bold uppercase text-stone-500">{label}</label>
+    {textarea ? <textarea className={classes} {...props}/> : <input className={classes} {...props}/>}
+  </p>
 }
