@@ -18,6 +18,10 @@ function App() {
     });
   }
 
+  function handleCancelAddProject(){
+    setProjectState(undefined);
+  }
+
   function handleAddProject(projectData) {
     setProjectState(prevState => {
       const projectid = Math.random();
