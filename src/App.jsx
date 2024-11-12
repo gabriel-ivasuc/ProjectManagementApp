@@ -2,6 +2,7 @@ import ProjectSideBar from "./components/ProjectSideBar.jsx";
 import NewProject from "./components/NewProject.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
 import { useState } from "react";
+import SelectedProject from "./components/SelectedProject.jsx";
 
 function App() {
   const [projectState, setProjectState] = useState({
@@ -9,11 +10,30 @@ function App() {
     projects: []
   });
 
+function  handleSelectProject(id) {
+    setProjectState(prevState => {
+      return {
+        ...prevState,
+        projectSelectedId: id,
+      }
+    });
+}
+
+function handleDeleteProject() {
+  setProjectState(prevState => {
+    return {
+      ...prevState,
+      projectSelectedId: undefined,
+      projects: prevState.projects.filter(project => project.id !== prevState.selectedProjectId)
+    }
+  });
+}
+
   function handleStartNewProject() {
     setProjectState(prevState => {
       return {
         ...prevState,
-        projectSelectedId: null
+        projectSelectedId: null,
       }
     });
   }
@@ -22,7 +42,7 @@ function App() {
     setProjectState(prevState => {
       return {
         ...prevState,
-        projectSelectedId: undefined
+        projectSelectedId: undefined,
       }
     });
   }
@@ -35,6 +55,8 @@ function App() {
       id: Math.random()
     };
 
+
+
       return {
         ...prevState,
         projectSelectedId: undefined,
@@ -43,7 +65,8 @@ function App() {
     });
   }
 
-  let content;
+  const selectedProject = projectState.projects.find(project => project.id === projectState.projectSelectedId);
+  let content = <SelectedProject project={selectedProject}/>;
 
   if (projectState.projectSelectedId === null) {
     content = <NewProject onAdd={handleAddProject} onCancelProject={handleCancelAddProject}/>
@@ -55,8 +78,10 @@ function App() {
     <main className="flex h-screen gap-10 my-8">
       <ProjectSideBar
         onStartAddProject={handleStartNewProject}
-        projects={projectState.projects}/>
-    {content}
+        projects={projectState.projects}
+        onSelectProject={handleSelectProject}
+      />
+      {content}
 
     </main>
   );

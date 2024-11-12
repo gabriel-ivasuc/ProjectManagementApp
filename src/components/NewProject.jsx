@@ -48,11 +48,11 @@ export default function NewProject( { onAdd, onCancelProject } ) {
         </li>
       </menu>
       <div>
-        <p>
+        <div>
           <Input ref={title} label='Title' type='text'/>
           <Input ref={description} label='Description' textarea/>
           <Input ref={dueDate} label='Due Date' type='date'/>
-        </p>
+        </div>
       </div>
     </div>
   </>
