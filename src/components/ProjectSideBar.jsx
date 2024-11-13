@@ -10,7 +10,7 @@ export default function ProjectSideBar({ onStartAddProject, projects, onSelectPr
           let cssClasses = 'w-full px-2 py-1 my-1 text-left rounded-sm text-stone-400 hover:text-stone-150 hover:bg-stone-800';
 
           if (project.id === selectedProjectId) {
-            cssClasses += ' bg-stone-800 text-stone-200';
+            cssClasses += ' bg-stone-800 text-stone-100';
           } else {
             cssClasses += ' text-stone-300';
           }
